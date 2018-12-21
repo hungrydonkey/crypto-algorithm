@@ -148,7 +148,7 @@ void MixColumns(uint8_t state[]){
 
 /*
 static inline uint8_t mul(uint8_t a) {
-    return (a&0x80) ? ((a<<1)^0x1b) : (a<<1);
+    return (a&0x80) ? ((a<<1)^0x1b) : (a<<1);      //a*0x02(G2^8)
 }
 
 void MixColumns(uint8_t state[]){
