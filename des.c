@@ -251,7 +251,7 @@ int main()
     for(int i = 0;i < 64;i+=8){
         int a;
         a = cipher[i]*128 + cipher[i+1]*64 + cipher[i+2]*32 + cipher[i+3]*16 + cipher[i+4]*8 + cipher[i+5]*4 + cipher[i+6]*2 + cipher[i+7];
-        printf("%c ",a,a);
+        printf("%c ",a);
      }
     return 0;
 }
