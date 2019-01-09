@@ -128,6 +128,18 @@ static int S[8][64] = {{
 }};
 
 
+static int P[] = {
+    16,  7, 20, 21,
+    29, 12, 28, 17,
+     1, 15, 23, 26,
+     5, 18, 31, 10,
+     2,  8, 24, 14,
+    32, 27,  3,  9,
+    19, 13, 30,  6,
+    22, 11,  4, 25
+};
+
+
 static int IP1[] =  {
     40,  8, 48, 16, 56, 24, 64, 32,
     39,  7, 47, 15, 55, 23, 63, 31,
@@ -195,7 +207,8 @@ void KS()
 }
 
 void f(int r[],int k[],int output[]){
-    int temp[48] ={0};
+    int temp[48]  = {0};
+    int temp1[32] = {0};
     int x,y,n = 1;
     for(int i = 0;i < 48;i++)
         temp[i] = r[Expansion[i]-1] ^ k[i];                      //E ^ Kn
@@ -207,7 +220,12 @@ void f(int r[],int k[],int output[]){
         dec(S[n-1][x*16+y],4,4*n-1,output);
         n++;
      }
+    memcpy(temp1,output,sizeof(temp1));
     //show(output,32,4);
+    for(int i = 0;i < 32;i++){
+        //printf("%d %d *",P[i]-1,temp1[P[i]-1]);
+        output[i] = temp1[P[i]-1];
+    }
     //printf("\n");
 }
 
@@ -251,7 +269,7 @@ int main()
     for(int i = 0;i < 64;i+=8){
         int a;
         a = cipher[i]*128 + cipher[i+1]*64 + cipher[i+2]*32 + cipher[i+3]*16 + cipher[i+4]*8 + cipher[i+5]*4 + cipher[i+6]*2 + cipher[i+7];
-        printf("%c ",a);
+        printf("  %c  ",a);
      }
     return 0;
 }
