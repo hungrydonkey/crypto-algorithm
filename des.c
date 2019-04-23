@@ -167,7 +167,7 @@ void show(int a[],int l,int n){   //array length number
     }
 }
 
-void KS()
+void KS(void)
 {
     struct Kshel kcd[Nr+1] = {0};
     int temp[48] = {0};
