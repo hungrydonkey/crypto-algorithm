@@ -164,7 +164,7 @@ void MixColumns(uint8_t state[]){
     }
 }
 */
-int main(){
+int main(void){
 
     uint8_t Cipher[4*Nb]  = {0};
     uint8_t state[4*Nb]   = {0};
