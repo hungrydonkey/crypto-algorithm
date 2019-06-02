@@ -49,7 +49,7 @@ static const uint32_t Rcon[] =
   0x1B000000, 0x36000000
 };
 
-void KeyExpansion(uint32_t w[]){
+static void KeyExpansion(uint32_t w[]){
     uint32_t temp;
     int i = 0;
     while(i < Nk){
@@ -76,7 +76,7 @@ void KeyExpansion(uint32_t w[]){
     }
 }
 
-void AddRoundKey(uint8_t state[],uint32_t w[],int n){
+static void AddRoundKey(uint8_t state[],uint32_t w[],int n){
         for(int i = 0;i < Nb;i++){
             state[4*i]   = state[4*i] ^ (w[n+i] >>24);
             //printf("%#x",state[4*i]);
@@ -89,12 +89,12 @@ void AddRoundKey(uint8_t state[],uint32_t w[],int n){
         }
 }
 
-void SubBytes(uint8_t state[]){
+static void SubBytes(uint8_t state[]){
     for(int i = 0;i < Nb*4;i++)
         state[i] = Sbox[state[i]>>4][state[i]&0x0f];
 }
 
-void ShiftRows(uint8_t state[]){
+static void ShiftRows(uint8_t state[]){
     uint8_t temp,temp1;
     int i;
     temp = state[1];
@@ -115,7 +115,7 @@ void ShiftRows(uint8_t state[]){
     state[3] = temp;
 }
 
-uint8_t mul(uint8_t a,uint8_t b){
+static uint8_t mul(uint8_t a,uint8_t b){
     uint8_t p = 0;
 	while (a && b) {
         if (b & 1)
@@ -132,7 +132,7 @@ uint8_t mul(uint8_t a,uint8_t b){
 
 
 
-void MixColumns(uint8_t state[]){
+static void MixColumns(uint8_t state[]){
     uint8_t temp[Nb] = {0};
     for(int i = 0;i < Nb;i++){
         for(int j = 0;j < Nb;j++){
