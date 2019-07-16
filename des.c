@@ -250,9 +250,9 @@ int main(void)
     memcpy(lr[0].l,pltemp,sizeof(lr[0].l));
     memcpy(lr[0].r,&pltemp[32],sizeof(lr[0].r));
 
-    int output[32] ={0};
+    
     for(int i = 1;i <= Nr;i++){
-        int output[32] ={0};
+        int output[32] = {};
         memcpy(lr[i].l,lr[i-1].r,sizeof(lr[i].l));      //Li = Ri-1
         f(lr[i-1].r,Kn[i-1],output);                    //f(Ri-1,Kn)
         for(int j = 0;j < 32;j++)
