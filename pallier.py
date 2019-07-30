@@ -40,13 +40,3 @@ def decrypt(c):
     #print(p)
     return p
 
-'''
-a = 1
-x = 0
-for i in m:
-    c = encrypt(i)
-    a = c * a % pk.nsquare 
-    x = x + i
-print('a',a,x)
-decrypt(a)
-'''
