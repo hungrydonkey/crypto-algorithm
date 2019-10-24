@@ -69,7 +69,7 @@ static double getmu(double v[],double vo[]){
 	return vvo/vovo;
 }
 static double getmo(double v[]){
-	int mo = 0;
+	double mo = 0;
 	for(int i = 0;i <  N;i++)
 		mo += v[i] * v[i];
 	return mo;	
