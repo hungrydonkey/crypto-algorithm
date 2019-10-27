@@ -1,14 +1,16 @@
 #include <stdio.h>
 #include <string.h>
 #define N 6
+#define ALPHA 3.0/4.0
 #define SZ sizeof(double)
+
 
 static inline void matshow(double matrix[][N]);
 static void schmidt(double base[][N],double vbase[][N],double p[][N]);
 static double getmu(double v[],double vo[]);
 static double (*lll(void))[N]; 
 
-double base[N][N] = {
+static double base[N][N] = {
 	{19,  2, 32, 46,  3, 33},
 	{15, 42, 11,  0,  3, 24},
 	{43, 15,  0, 24,  4, 16}, 
@@ -16,10 +18,10 @@ double base[N][N] = {
 	{0,  48, 35, 16, 31, 31}, 
 	{48, 33, 32,  9,  1, 29},
 };
-double vbase[N][N];
-double pmatrix[N][N];
+static double vbase[N][N];
+static double pmatrix[N][N];
 
-void initpmat(double p[][N]){
+static void initpmat(double p[][N]){
 	for(int i = 0;i < N*N;i++)
 		p[i/N][i%N] = (i/N == i%N) ? 1 :0;
 	//matshow(p);
@@ -95,7 +97,7 @@ static double (*lll(void))[N]{
 				lbase[k][j] = lbase[k][j] - intmu(mu) * lbase[i][j]; 
 		}
 		schmidt(lbase,lvbase,tempmat);
-		if(getmo(lvbase[k]) >= (3.0/4.0 - SQURE(getmu(lbase[k],lvbase[k-1]))) * getmo(lvbase[k-1]))
+		if(getmo(lvbase[k]) >= (ALPHA - SQURE(getmu(lbase[k],lvbase[k-1]))) * getmo(lvbase[k-1]))
 			k++;
 		else{
 			double tempv[N] = {0};
