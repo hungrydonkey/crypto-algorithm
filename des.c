@@ -170,7 +170,7 @@ void show(int a[],int l,int n){   //array length number
 void KS(void)
 {
     struct Kshel kcd[Nr+1] = {0};
-    int temp[48] = {0};
+    int temp[56] = {0};
     for(int i = 0;i < 28;i++){                //PC1
         kcd[0].c[i] = key[PC1c[i]-1];
         kcd[0].d[i] = key[PC1d[i]-1];
