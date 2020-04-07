@@ -10,20 +10,20 @@ my @lbase;
 my $α = 3/4;
 my $sqr = ->$x {$x**2};
 
-sub vector(@x,@y,$op?){
+sub vector(@x,@y,$op?) {
     with $op  {
         my @result;
         for 0..@x.end -> $i { @result.push(@x[$i] - @y[$i]); }
         return @result;
     }
-    else{
+    else {
         my $result = 0;
         for 0..@x.end -> $i {  $result += @x[$i] * @y[$i]; }
         return $result;
     }
 }
 
-sub reduce($k,$l,@lbase,@mu){
+sub reduce($k,$l,@lbase,@mu) {
     if abs(@mu[$k;$l]) > 1/2 {
         @lbase[$k] = vector(@lbase[$k],map(->$x {$x * @mu[$k;$l].round},@(@lbase[$l])),'-'); 
         for 0..$l-1 -> $j { @mu[$k;$j] = @mu[$k;$j] - @mu[$k;$l].round * @mu[$l;$j]; }
@@ -31,7 +31,7 @@ sub reduce($k,$l,@lbase,@mu){
     }
 }
 
-sub exchange($k,@lbase,@mu,@mo){
+sub exchange($k,@lbase,@mu,@mo) {
     my $z = @lbase[$k-1];
     @lbase[$k-1] = @lbase[$k];
     @lbase[$k] = $z;
@@ -58,7 +58,7 @@ sub LLL(@base --> Array) {
     my @vbase;
     my @lbase;
     @lbase = @base.clone;
-    loop (my $i = 0;$i < @base.elems; $i++){
+    loop (my $i = 0;$i < @base.elems; $i++) {
         @vbase[$i] = @lbase[$i]; 
         for 0..$i-1 -> $j {
             @mu[$i;$j] = vector(@lbase[$i],@vbase[$j]) / @mo[$j];
