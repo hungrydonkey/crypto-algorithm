@@ -1,2 +1,2 @@
 # crypto-algorithm
-some common cryptographic algorithms
+some cryptographic algorithms
